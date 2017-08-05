@@ -1,0 +1,15 @@
+<h1>Home#index</h1>
+<%if user_signed_in?%>
+<p>이름: <%=current_user.name%></p>
+<p>이메일: <%=current_user.email%></p>
+<p>성실도: <%=current_user.parti%></p>
+<p>포인트: <%=current_user.point%></p>
+<p><a href="/users/sign_out">로그아웃</a></p>
+<a href="/home/make_room">방만들기</a>
+<%@room = Room.all%>
+<%@room.each do |r|%>
+<%=r.room_name+" "+r.captain%>
+<%end%>
+<%else%>
+<a href="/users/sign_in">로그인</a>
+<%end%>
