@@ -1,0 +1,44 @@
+<%#@master = true%>
+<%if @masterMenu != "" %>
+    <p><a href="/signed/masterPage/<%=@masterMenu%>"> 방장메뉴 </a></p>
+<% end %>
+<h1>signed#page</h1>
+
+<div class="dbInfo">
+    <p>디비 정보 상태</p>
+    <p>이름: <%= @one_user.name %></p>
+    <p>id: <%= @one_user.id %></p>
+    <p>이멜: <%= @one_user.email %></p>
+    <p>성실도: <%= @one_user.parti %></p>
+    <p>포인트: <%= @one_user.point %></p>
+    <p>방번호: <b><%= @one_user.studyID %></b></p>
+</div>
+
+<div class="sessionInfo">
+    <p>세션 정보 상태</p>
+    <p>이름: <%= current_user.name %></p>
+    <p>id: <%= current_user.id %></p>
+    <p>이메일: <%=current_user.email%></p>
+    <p>성실도: <%=current_user.parti%></p>
+    <p>포인트: <%=current_user.point%></p>
+    <p>방번호: <b><%=current_user.studyID%></b></p>
+</div>
+
+<div class="myRoomInfo">
+
+<div>
+    <p>참가한 방 정보</p>
+    
+    <p>방 번호        :<%=@room.id%></p>
+    <p>방이름         :<%=@room.studyName%></p>
+    <p>방장           :<%=@room.stuMaster%></p>
+    <p>방 생성날짜    :<%=@room.mDate%></p>
+    <p>방 학생수      :<%=@room.stuNo%></p>
+    <p>방 인증 방법   :<%=@room.certi%></p>
+</div>
+
+</div>
+<p><a href="/users/sign_out">로그아웃</a></p>
+<p><a href="/signed/my_room">나의 스터디</a></p>
+<p><a href="/signed/memberList">회원명부 보기</a></p>
+<p><a href="/unsigned/stateChange">방 탈퇴</a></p>

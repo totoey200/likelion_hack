@@ -1,0 +1,30 @@
+<h1>Unsigned#page</h1>
+<%if user_signed_in? %>
+<div class="dbInfo">
+    <p>이름: <%= @one_user.name %></p>
+    <p>id: <%= @one_user.id %></p>
+    <p>이멜: <%= @one_user.email %></p>
+    <p>성실도: <%= @one_user.parti %></p>
+    <p>포인트: <%= @one_user.point %></p>
+    <p>방번호: <%= @one_user.studyID %></p>
+</div>
+
+<div class="sessionInfo">
+    <p>이름: <%= current_user.name %></p>
+    <p>id: <%= current_user.id %></p>
+    <p>이메일: <%=current_user.email%></p>
+    <p>성실도: <%=current_user.parti%></p>
+    <p>포인트: <%=current_user.point%></p>
+    <p>방번호: <%=current_user.studyID%></p>
+</div>
+
+<p><a href="/users/sign_out">로그아웃</a></p>
+<p><a href="/signed/my_room">나의 스터디</a></p>
+<p><a href="/unsigned/make_room">방만들기</a></p>
+<p><a href="/unsigned/studyList">방목록 보기</a></p>
+
+<p><a href="/unsigned/stateChange">방 참가했다 쳐</a></p>
+
+<%else%>
+<a href="/users/sign_in">로그인</a>
+<%end%>

@@ -1,0 +1,20 @@
+<%#@master = true%>
+
+<p><%= @room.studyName %>방의 멤버 리스트</p>
+
+
+<div class="myRoomInfo">
+
+<% @member.each do |r|%>
+<div>
+    <p>닉네임 :<%=r.nickname%></p>
+    <p>학생 id:<%=r.studentID%></p>
+    <p>방   id:<%=r.studyID%></p>
+</div>
+<% end %>
+
+
+</div>
+<p><a href="/users/sign_out">로그아웃</a></p>
+<p><a href="/signed/my_room">나의 스터디</a></p>
+<p><a href="/unsigned/stateChange">방 탈퇴</a></p>

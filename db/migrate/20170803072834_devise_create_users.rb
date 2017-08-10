@@ -2,11 +2,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :name
-      t.integer :parti, default: 100
-      t.integer :point, default: 100
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :name # 이름
+      t.integer :parti, default: 100 #성실도
+      t.integer :point, default: 100 #포인트
+      t.integer :studyID, default: 0 #방번호 없으면 0
+      t.boolean :isMaster, default: false
+      t.string :email,               null: false, default: ""#이멜
+      t.string :encrypted_password, null: false, default: "" #비번암호화
 
       ## Recoverable
       t.string   :reset_password_token

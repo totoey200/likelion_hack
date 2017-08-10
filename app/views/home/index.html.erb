@@ -1,3 +1,14 @@
+<div class="indexBanner">
+
+    <h1> 일어나요!!! </h1>
+</div>
+<div class=indexCont>
+    <a href="/users/sign_in"><p>[로그인]</p></a>
+    <a href="/users/sign_up"><p>[회원가입]</p></a>
+</div>
+<!--우선 완료-->
+
+<!--
 <h1>Home#index</h1>
 <%if user_signed_in?%>
 <p>이름: <%=current_user.name%></p>
@@ -5,11 +16,15 @@
 <p>성실도: <%=current_user.parti%></p>
 <p>포인트: <%=current_user.point%></p>
 <p><a href="/users/sign_out">로그아웃</a></p>
+<p><a href="/signed/my_room">나의 스터디</a></p>
 <a href="/home/make_room">방만들기</a>
-<%@room = Room.all%>
-<%@room.each do |r|%>
-<%=r.room_name+" "+r.captain%>
+<%room = Room.all%>
+<%room.each do |r|%>
+<p><%=r.room_name+" "+r.captain%></p>
+<%=r.crew%>
+<%user = User.all%>
 <%end%>
 <%else%>
 <a href="/users/sign_in">로그인</a>
 <%end%>
+-->

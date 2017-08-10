@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   get 'home/index'
-  get 'home/make_room'
+  get 'unsigned/make_room'
+  get '/signed/memberList'
+  get '/signed/masterPage/:id' => 'signed#masterPage'
+  get '/unsigned/studyList'
+  get 'signed/my_room'
+  get 'unsigned/unsignedPage'
+  get '/home/main' => 'home#main'
   get '/create' => 'unsigned#create'
+  get '/unsigned/stateChange/:id' => 'unsigned#stateChange'
+  get '/unsigned/stateChange' => 'unsigned#stateChange'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

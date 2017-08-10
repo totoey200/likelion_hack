@@ -8,7 +8,7 @@ class CreateRooms < ActiveRecord::Migration
       t.string :certi #인증방법이래
       t.text :comment
       t.string :captain
-      t.string :crew, array: true, default: []
+      t.string :crew, :default => [].to_yaml
       t.timestamps null: false
     end
   end
