@@ -4,6 +4,7 @@ class CreatePics < ActiveRecord::Migration
       t.integer :studyID
       t.string :stuMaster
       t.integer :studentID
+      t.string :image
       t.datetime :certiDate
       t.timestamps null: false
     end

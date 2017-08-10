@@ -17,6 +17,16 @@ class SignedController < ApplicationController
         @room = @room = Study.find_by(id: current_user.studyID)
         @member = Stulist.where(studyID: current_user.studyID)
     end
+    
+    def certification
+        newPic = Pic.new
+        newPic.studyID = current_user.studyID
+        newPic.stuMaster = Study.find_by(id: current_user.studyID).stuMaster
+        newPic.studentID = current_user.id
+        newPic.image = params[:image]
+        newPic.certiDate = Date.today
+        newPic.save
+    end
 
     def masterPage
         

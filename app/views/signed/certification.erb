@@ -1,5 +1,10 @@
-<h1>인증합시다</1>
+<h1>인증합시다</h1>
 
-<form action="" method="post" enctype="multipart/form-data" name="">
-    <input type="file" name="FileName">
+<form action="/certi" method="post" enctype="multipart/form-data" name="">
+    <input type="file" name="image">
+    <input type="submit" value="Submit">
 </form>
+<%@posts = Pic.all%>
+<%@posts.each do |post|%>
+<%= image_tag post.image.url%>
+<%end%>

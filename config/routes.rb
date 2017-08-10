@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/create' => 'unsigned#create'
   get '/unsigned/stateChange/:id' => 'unsigned#stateChange'
   get '/unsigned/stateChange' => 'unsigned#stateChange'
+  get 'signed/certification'
+  post '/certi' => 'signed#certification'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
