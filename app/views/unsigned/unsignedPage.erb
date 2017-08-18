@@ -1,30 +1,129 @@
-<h1>Unsigned#page</h1>
-<%if user_signed_in? %>
-<div class="dbInfo">
-    <p>이름: <%= @one_user.name %></p>
-    <p>id: <%= @one_user.id %></p>
-    <p>이멜: <%= @one_user.email %></p>
-    <p>성실도: <%= @one_user.parti %></p>
-    <p>포인트: <%= @one_user.point %></p>
-    <p>방번호: <%= @one_user.studyID %></p>
+
+
+
+
+
+
+<body class="signedMain">
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+    		</button>
+    		<a class="navbar-brand" href="#">Brand</a>
+    	</div>
+
+    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    		<ul class="nav navbar-nav">
+        		<li><a href="/users/sign_out">로그아웃</a></li>
+                <li><a href="/unsigned/make_room">방만들기</a></li>
+    		</ul>
+    	</div>
+	</div>
+</nav>
+
+
+<div class="section col-sm-2 signedSide Tbor">
+    <div class="container tim-container">
+        <div class="photoZone Tbor">
+            <!-- 디폴트 프로필 사진 넣기-->
+        <img src = "app/assets/images/profile1.png" , width ="50%" height = "50%">
+        </div>
+		<div class="profileZone Tbor">
+		    <p>이름: <%= @one_user.name %></p>
+            <p>email: <%= @one_user.email %></p>
+            <p>성실도: <%= @one_user.parti %></p>
+            <p>방번호: <%= @one_user.studyID %></p>
+		</div>
+		<div class="categoryZone">
+		    
+		</div>
+	</div>
 </div>
 
-<div class="sessionInfo">
-    <p>이름: <%= current_user.name %></p>
-    <p>id: <%= current_user.id %></p>
-    <p>이메일: <%=current_user.email%></p>
-    <p>성실도: <%=current_user.parti%></p>
-    <p>포인트: <%=current_user.point%></p>
-    <p>방번호: <%=current_user.studyID%></p>
+<div class="col-sm-9 unsignedCert Tbor">
+    <div class="container tim-container">
+        <div class="row">
+           <h2>모집중 스터디 ></h2>
+           <%@room.each do |r|%>
+	       <div class="section col-sm-1 roomlist" data-toggle="modal" data-target="#myModal">
+             <div class="listCont">
+                    <div>
+                        <p>방이름         :<%=r.studyName%></p>
+                        <p>방장           :<%=r.stuMaster%></p>
+                        <p>방 학생수      :<b><%= r.curNo %></b>/<%=r.stuNo%></p>
+                        <p>방 인증 방법   :<%=r.certi%></p>
+                        
+                        <p>
+                            <% if r.isOpen == true%>
+                                <a href="/unsigned/stateChange/<%= r.id %>">[참가]</a>
+                            <% else %>
+                                [꽉참]
+                            <% end %>
+                        </p>
+                    </div>
+             </div>
+	       </div>
+	       <%end%>
+	</div>
 </div>
 
-<p><a href="/users/sign_out">로그아웃</a></p>
-<p><a href="/signed/my_room">나의 스터디</a></p>
-<p><a href="/unsigned/make_room">방만들기</a></p>
-<p><a href="/unsigned/studyList">방목록 보기</a></p>
+<!-- Button trigger modal -->
+<button class="btn btn-primary " >
+  Launch demo modal
+</button>
 
-<p><a href="/unsigned/stateChange">방 참가했다 쳐</a></p>
+<!-- Modal Core -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info btn-simple">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%else%>
-<a href="/users/sign_in">로그인</a>
-<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

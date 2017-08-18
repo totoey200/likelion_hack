@@ -5,17 +5,22 @@ class SignedController < ApplicationController
     
     def my_room
         @one_user = User.find_by(id: current_user.id)
-        @room = Study.find_by(id: current_user.studyID)
+        $room = Study.find_by(id: current_user.studyID)
+        $member = Stulist.where(studyID: current_user.studyID)
+        $memoBoard = Memolist.where(studyID: current_user.studyID).order("created_at DESC")
         @masterMenu = ""
+        @notice = Notice.where(studyID: current_user.studyID)
         
-        if @room.stuMaster == current_user.name
+        
+        
+        
+        if $room.stuMaster == current_user.name
             @masterMenu = current_user.studyID
         end
     end
     
     def memberList
-        @room = @room = Study.find_by(id: current_user.studyID)
-        @member = Stulist.where(studyID: current_user.studyID)
+        
     end
     
     def certification
@@ -26,23 +31,34 @@ class SignedController < ApplicationController
         newPic.image = params[:image]
         newPic.certiDate = Date.today
         newPic.save
+        
+        redirect_to "/signed/my_room"
     end
 
-    def masterPage
-    end
-    
-    def memoBoard
-        @memoBoard = Memolist.where(studyID: current_user.studyID).order("created_at DESC")
-    end
-    
-    def memoWrite
-        @newMemo = Memolist.new
-        @newMemo.studyID = current_user.studyID
-        @newMemo.memoName = current_user.name
-        @newMemo.memoContent = params[:content]
-        @newMemo.save
+    def punishment
+        target = User.find_by(name: params[:name])
+        target.ransome = target.ransome+(params[:money].to_i)
+        target.save
         
-        redirect_to "/signed/memoBoard"
+        redirect_to "/signed/my_room"
+    end
+    
+    def notice
+        newnotice = Notice.new
+        newnotice.content = params[:content]
+        newnotice.save
+        
+        redirect_to "signed/my_room"
+    end
+
+    def memoWrite
+        newMemo = Memolist.new
+        newMemo.studyID = current_user.studyID
+        newMemo.memoName = current_user.name
+        newMemo.memoContent = params[:content]
+        newMemo.save
+        
+        redirect_to "/signed/my_room"
     end
     
     def minus_parti #성취도 차감

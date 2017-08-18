@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'signed/memoBoard' => 'signed#memoBoard'
   get 'home/test'
   get '/mm' => 'signed#testMain'
+  post 'signed/punishment' => 'signed#punishment'
+  post "signed/notice" => 'signed#notice'
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

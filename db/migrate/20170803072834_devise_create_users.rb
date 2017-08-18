@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name # 이름
       t.integer :parti, default: 100 #성실도
       t.integer :point, default: 100 #포인트
+      t.integer :ransome, default: 0 #벌점
       t.integer :studyID, default: 0 #방번호 없으면 0
       t.boolean :isMaster, default: false
       t.string :email,               null: false, default: ""#이멜

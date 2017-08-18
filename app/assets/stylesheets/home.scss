@@ -7,14 +7,16 @@ html, body{
 	height:100%;
 }
 .Tbor{
-    border: black solid 1px;
+    //border: black solid 1px;
 }
 .signedMain{
      height: 100%;
      width: 100%;
      border: black solid 3px;
+     background-color: #F1F5F8;
 }
 .signedSide{
+    display: flex;
     background-color : white;
     margin-top: -1%;
     height: 90%;
@@ -27,8 +29,126 @@ html, body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .signedCert{
+    display: flex;
     margin-left : 1%;
     margin-top: -1%;
     height: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.simple-calendar{
+    background: white;
+}    
+
+.wday-6{
+    color : blue;
+}
+
+.wday-0{
+    color : red;
+}
+
+.prev-month{
+    color : grey;
+}
+
+.next-month{
+    color : grey;
+}
+
+.current-month{
+    font-weight : bold;
+}
+.section col-sm-3 signedCert Tbor{
+    margin-right : 300%;
+    width: 300%;
+}
+
+.calendar-heading{
+    background: #0295FF;
+    color : white;
+    height: 5vh;
+    width: 80%;
+    z-index: 2;
+    margin: auto;
+    text-align: center;
+    padding: 0.8vh;
+    border-radius : 5px;
+    margin-bottom: -1%;
+}
+.table{
+    z-index: 1;
+}
+.calendar-title{
+    font-size: 200%;
+}
+
+.roomlist{
+    margin : 10px;
+    background-color: white;
+    border-radius: 20%;
+    width : 20%;
+    height : 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20%;
+    
+}
+.unsignedCert{
+    margin-left : 1%;
+    margin-top: -1%;
+    height: 89%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2%;
+    overflow-x: hidden;
+    width : 82%;
+    
+}
+.listCont{
+    height: 30%;
+    padding: 2%;
+    
+}
+.photoZone{
+    width: 16%;
+    height: 90px;
+}
+.profileZone{
+    width: 16%;
+}
+.profileZone p{
+    margin: 0 0 1px;
+}
+
+#bs-example-navbar-collapse-1{
+    float: right;
+}
+.side_title{
+    padding : 8% 12%;
+    color : white;
+    font-size: 120%;
+    font-weight: bold;
+    background: #2BABF9;
+    height : 8%;
+}
+
+.content{
+    height: 25%;
+    overflow: scroll;
+}
+
+#coin{
+    float: left;
+    height: 30%;
+    width: 30%;
+}
+
+#ransome{
+    font-weight : bold;
+    font-size : 200%;
+    padding: 10% 15%;
+}
+
+.check{
+    height : 40%;
+    width : 35%;
 }

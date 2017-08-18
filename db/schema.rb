@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811055414) do
+ActiveRecord::Schema.define(version: 20170818155722) do
 
   create_table "memolists", force: :cascade do |t|
     t.string   "studyID"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170811055414) do
     t.string   "memoContent"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string   "studyID"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pics", force: :cascade do |t|
@@ -53,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170811055414) do
     t.string   "stuMaster"
     t.integer  "studyID"
     t.string   "certi"
+    t.text     "rules"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -69,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170811055414) do
     t.string   "name"
     t.integer  "parti",                  default: 100
     t.integer  "point",                  default: 100
+    t.integer  "ransome",                default: 0
     t.integer  "studyID",                default: 0
     t.boolean  "isMaster",               default: false
     t.string   "email",                  default: "",    null: false

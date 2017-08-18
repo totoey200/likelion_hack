@@ -1,7 +1,7 @@
 class CreateStudies < ActiveRecord::Migration
   def change
     create_table :studies do |t|
-      t.string :studyName   #공부방 이름
+    t.string :studyName   #공부방 이름
 	  t.datetime :mDate     #공부방 생성날짜
 	  t.integer :stuNo      #학생수
 	  t.integer :curNo      #지금 학생수

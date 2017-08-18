@@ -1,6 +1,7 @@
 class UnsignedController < ApplicationController
     def unsignedPage
         @one_user = User.find_by(id: current_user.id)
+         @room = Study.all
     end
     
     def studyList

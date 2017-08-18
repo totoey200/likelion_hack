@@ -1,6 +1,96 @@
 <%if @masterMenu != "" %>
     <p><a href="/signed/masterPage/<%=@masterMenu%>"> 방장메뉴 </a></p>
 <% end %>
+<body class="signedMain">
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+    		</button>
+    		<a class="navbar-brand" href="#">일어나요(가제)</a>
+    	</div>
+
+    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    		<ul class="nav navbar-nav">
+				<li class="active"><a href="#">로그아웃</a></li>
+        		<li><a href="#">방만들기</a></li>
+        		<li><a href="/unsigned/stateChange">방 탈퇴</a></li>
+    		</ul>
+    	</div>
+	</div>
+</nav>
+
+
+<div class="section col-sm-2 signedSide Tbor">
+    <div class="container tim-container">
+        <div class="row content">
+            <p>이름: <%= @one_user.name %></p>
+            <p>이멜: <%= @one_user.email %></p>
+            <p>성실도: <%= @one_user.parti %></p>
+            <p>벌  금: <%= @one_user.ransome %></p>
+            <p>방번호: <b><%= @one_user.studyID %></b></p>
+		</div>
+		<div class="row side_title">회원</div>
+		<div class="row content" >
+            <%$member.each do |m|%>
+            <p><%=m.nickname%></p>
+            <%end%>
+		</div>
+		<div class="row side_title">댓글</div>
+		<div class="row content" >
+            <% $memoBoard.each do |r|%>
+                <p><b><%=r.memoName%> :</b><%= r.memoContent %><p>
+            <% end %>
+		</div>
+        <div class="row side_title">댓글입력</div>
+        <div class="row content">
+            <form action="/signed/memoWrite" method = "POST" style ="margin-top: 8%">
+              <input type="text" name="content">
+              <input type="submit" style="display: none;">
+            </form>
+		</div>
+	</div>
+</div>
+
+
+<div class="section col-sm-6 signedCal Tbor">
+		<%= month_calendar do |date| %>
+  		<%= date.mday %>
+  		<%if date<=Date.today%>
+        <%begin%>
+        <%if d[n].cdate.mday == date.mday%>
+        <img src="/assets/true.png" class ="check">
+        <%n+=1%>
+        <%else%>
+        <img src="/assets/false.png" class ="check">
+        <%end%>
+        <%rescue Exception => e%>
+        <img src="/assets/false.png" class ="check">
+        <%end%>
+        <%end%>
+		<% end %>
+</div>
+
+
+
+
+
+
+
+<div class="section col-sm-3 signedCert Tbor">
+    <div class="container tim-container">
+        <div class="row">
+            <div>누적 벌금</div>
+            <img src="/assets/coin.png" id="coin">
+            <p id="ransome"><%=@one_user.ransome%>원</p>
+		</div>
+	</div>
+</div>
+</body>
 <h1>signed#page</h1>
 
 <div class="dbInfo">
@@ -28,59 +118,57 @@
 <div>
     <p>참가한 방 정보</p>
     
-    <p>방 번호        :<%=@room.id%></p>
-    <p>방이름         :<%=@room.studyName%></p>
-    <p>방장           :<%=@room.stuMaster%></p>
-    <p>방 생성날짜    :<%=@room.mDate%></p>
-    <p>방 학생수      :<%=@room.stuNo%></p>
-    <p>방 인증 방법   :<%=@room.certi%></p>
+    <p>방 번호        :<%=$room.id%></p>
+    <p>방이름         :<%=$room.studyName%></p>
+    <p>방장           :<%=$room.stuMaster%></p>
+    <p>방 생성날짜    :<%=$room.mDate%></p>
+    <p>방 학생수      :<%=$room.stuNo%></p>
+    <p>방 인증 방법   :<%=$room.certi%></p>
 </div>
 
 </div>
-<p><a href="/users/sign_out">로그아웃</a></p>
-<p><a href="/signed/my_room">나의 스터디</a></p>
-<p><a href="/signed/memberList">회원명부 보기</a></p>
-<p><a href="/signed/memoBoard">메모보드</a><p>ㄷㄱㅎㅂ
-<p><a href="/unsigned/stateChange">방 탈퇴</a></p>
 
-<%myCertis = Pic.where(studentID: current_user.id).order(:certiDate)%>
-<%d=Date.today%>
-<%m=Date.new(d.year,d.mon)%>
-<%m-=m.wday%>
-<%n=0%>
-<p></p>
-<%if myCertis.count == 0%>
-<%5.times do %>
-<span>
-    <%7.times do %>
-    <%if m < d%>
-    <div class = "cal"><%=false%></div>
-    <%elsif m == d%>
-    <div class = "cal" id="today"><%=false%></div>
-    <%else%>
-    <div class = "cal"><%=m.mday%></div>
+<div>
+    <p>회원명부</p>
+    <%$member.each do |m|%>
+    <p><%=m.id%></p>
     <%end%>
-    <%m+=1%>
-    <%end%>
-</span>
-<%end%>
-<%else%>
-<%5.times do %>
-<span>
-    <%7.times do %>
-    <%if m < d && myCertis.count > 0%>
-    <div class = "cal"><%=myCertis[n].certiDate==m%></div>
-    <%elsif m == d && myCertis.count > 0%>
-    <div class = "cal" id="today"><%=myCertis[n].certiDate==m%></div>
-    <%else%>
-    <div class = "cal"><%=m.mday%></div>
-    <%end%>
-    <%if n<myCertis.count-1 && myCertis[n].certiDate==m %>
-    <%n+=1%>
-    <%end%>
-    <%m+=1%>
-    <%end%>
-</span>
-<p></p>
-<%end%>
-<%end%>
+</div>
+
+<% $memoBoard.each do |r|%>
+    <p><b><%=r.memoName%> :</b><%= r.memoContent %><p>
+<% end %>
+<form action="/signed/memoWrite" method = "POST">
+  <input type="text" name="content">
+  <input type="submit" style="display: none;">
+</form>
+
+<form action="/certi" method="post" enctype="multipart/form-data" name="">
+    <input type="file" name="image">
+    <input type="submit" value="Submit">
+</form>
+
+
+<hr/>
+
+<h1>벌금 주기</h1>
+
+<form action="/signed/punishment" method = "post">
+  <p>회원이름<input type="text" name="name"></p>
+  <p>벌금<input type="text" name="money"></p>
+  <input type="submit">
+</form>
+
+
+<hr/>
+
+<h1>공지사항</h1>
+<form action="/signed/notice" method = "post">
+  <p>공지사항<input type="text" name="content"></p>
+  <input type="submit">
+</form>
+<hr/>
+<h1>notice content</h1>
+<% @notice.each do |r|%>
+    <p><b><%=r.id%> :</b><%= r.content %><p>
+<% end %>
