@@ -1,0 +1,9 @@
+<h1>방 메모 보드</h1>
+
+<% @memoBoard.each do |r|%>
+    <p><b><%=r.memoName%> :</b><%= r.memoContent %><p>
+<% end %>
+<form action="/signed/memoWrite" method = "POST">
+  <input type="text" name="content">
+  <input type="submit">
+</form>

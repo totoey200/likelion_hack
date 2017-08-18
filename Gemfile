@@ -4,6 +4,7 @@ gem 'devise'
 gem 'fog-aws'
 gem 'mini_magick'
 gem 'carrierwave'
+gem "simple_calendar", "~> 2.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record

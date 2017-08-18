@@ -1,14 +1,20 @@
-<%room = Study.all%>
-<%room.each do |r|%>
+<%@room.each do |r|%>
 
 <div>
     <p>방 번호        :<%=r.id%></p>
     <p>방이름         :<%=r.studyName%></p>
     <p>방장           :<%=r.stuMaster%></p>
     <p>방 생성날짜    :<%=r.mDate%></p>
-    <p>방 학생수      :<%=r.stuNo%></p>
+    <p>방 학생수      :<%=r.stuNo%>/<b><%= r.curNo %></b></p>
     <p>방 인증 방법   :<%=r.certi%></p>
-    <p><a href="/unsigned/stateChange/<%= r.id %>">[참가]</a></p>
+    
+    <p>
+        <% if r.isOpen == true%>
+            <a href="/unsigned/stateChange/<%= r.id %>">[참가]</a>
+        <% else %>
+            [꽉참]
+        <% end %>
+    </p>
 </div>
 
 <%end%>

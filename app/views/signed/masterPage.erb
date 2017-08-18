@@ -1,3 +1,7 @@
 <h1>방장 페이지입니다</h1>
 <!--제공해야 하는 기능들-->
 <!-- 1. 방원 인증 목록에 온 것들을 확인하고 인증하는 란 -->
+<%todaypics = Pic.find_by(certiDate: Date.today)%>
+<%todaypics.each do |todaypic|%>
+<%=todaypic.studentID%>
+<%end%>

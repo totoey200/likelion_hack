@@ -29,8 +29,42 @@ class SignedController < ApplicationController
     end
 
     def masterPage
-        
-        
-        
     end
+    
+    def memoBoard
+        @memoBoard = Memolist.where(studyID: current_user.studyID).order("created_at DESC")
+    end
+    
+    def memoWrite
+        @newMemo = Memolist.new
+        @newMemo.studyID = current_user.studyID
+        @newMemo.memoName = current_user.name
+        @newMemo.memoContent = params[:content]
+        @newMemo.save
+        
+        redirect_to "/signed/memoBoard"
+    end
+    
+    def minus_parti #성취도 차감
+        parti = 100
+
+    #만약, 1회 인증 못했을 경우, 0~100으로 제한.
+    #만약 출석 못했을 경우, 
+    #parti 값에 대한 id 정보 불러오고
+    #check == 달력에 인증되는 내용이라 가정
+        while parti == true
+            if check == false
+                parti -= 5
+                break if parti == 0
+        #출석 했을 경우,
+            elsif check == true
+                parti += 3
+                continue if parti == 100
+            end
+        end
+    end
+                
+    #단, parti의 최댓값은 100
+    
+    
 end

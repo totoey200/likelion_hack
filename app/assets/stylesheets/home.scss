@@ -1,6 +1,34 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div {
-    border : solid black 1px;
+html, body{
+	margin:0;
+	padding:0;
+	height:100%;
+}
+.Tbor{
+    border: black solid 1px;
+}
+.signedMain{
+     height: 100%;
+     width: 100%;
+     border: black solid 3px;
+}
+.signedSide{
+    background-color : white;
+    margin-top: -1%;
+    height: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.signedCal{
+    margin-left : 2%;
+    margin-top: -1%;
+    height: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.signedCert{
+    margin-left : 1%;
+    margin-top: -1%;
+    height: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

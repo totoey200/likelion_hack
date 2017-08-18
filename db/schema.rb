@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810083000) do
+ActiveRecord::Schema.define(version: 20170811055414) do
+
+  create_table "memolists", force: :cascade do |t|
+    t.string   "studyID"
+    t.string   "memoName"
+    t.string   "memoContent"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "pics", force: :cascade do |t|
     t.integer  "studyID"
@@ -40,11 +48,13 @@ ActiveRecord::Schema.define(version: 20170810083000) do
     t.string   "studyName"
     t.datetime "mDate"
     t.integer  "stuNo"
+    t.integer  "curNo"
+    t.boolean  "isOpen",     default: true
     t.string   "stuMaster"
     t.integer  "studyID"
     t.string   "certi"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "stulists", force: :cascade do |t|

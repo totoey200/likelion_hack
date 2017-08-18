@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   get '/unsigned/stateChange' => 'unsigned#stateChange'
   get 'signed/certification'
   post '/certi' => 'signed#certification'
-
+  post '/signed/memoWrite' => 'signed#memoWrite'
+  get 'signed/memoBoard' => 'signed#memoBoard'
+  get 'home/test'
+  get '/mm' => 'signed#testMain'
+  
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

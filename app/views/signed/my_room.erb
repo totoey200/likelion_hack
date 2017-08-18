@@ -1,4 +1,3 @@
-<%#@master = true%>
 <%if @masterMenu != "" %>
     <p><a href="/signed/masterPage/<%=@masterMenu%>"> 방장메뉴 </a></p>
 <% end %>
@@ -41,4 +40,47 @@
 <p><a href="/users/sign_out">로그아웃</a></p>
 <p><a href="/signed/my_room">나의 스터디</a></p>
 <p><a href="/signed/memberList">회원명부 보기</a></p>
+<p><a href="/signed/memoBoard">메모보드</a><p>ㄷㄱㅎㅂ
 <p><a href="/unsigned/stateChange">방 탈퇴</a></p>
+
+<%myCertis = Pic.where(studentID: current_user.id).order(:certiDate)%>
+<%d=Date.today%>
+<%m=Date.new(d.year,d.mon)%>
+<%m-=m.wday%>
+<%n=0%>
+<p></p>
+<%if myCertis.count == 0%>
+<%5.times do %>
+<span>
+    <%7.times do %>
+    <%if m < d%>
+    <div class = "cal"><%=false%></div>
+    <%elsif m == d%>
+    <div class = "cal" id="today"><%=false%></div>
+    <%else%>
+    <div class = "cal"><%=m.mday%></div>
+    <%end%>
+    <%m+=1%>
+    <%end%>
+</span>
+<%end%>
+<%else%>
+<%5.times do %>
+<span>
+    <%7.times do %>
+    <%if m < d && myCertis.count > 0%>
+    <div class = "cal"><%=myCertis[n].certiDate==m%></div>
+    <%elsif m == d && myCertis.count > 0%>
+    <div class = "cal" id="today"><%=myCertis[n].certiDate==m%></div>
+    <%else%>
+    <div class = "cal"><%=m.mday%></div>
+    <%end%>
+    <%if n<myCertis.count-1 && myCertis[n].certiDate==m %>
+    <%n+=1%>
+    <%end%>
+    <%m+=1%>
+    <%end%>
+</span>
+<p></p>
+<%end%>
+<%end%>

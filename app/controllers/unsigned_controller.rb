@@ -3,10 +3,16 @@ class UnsignedController < ApplicationController
         @one_user = User.find_by(id: current_user.id)
     end
     
+    def studyList
+        @room = Study.all
+    end
+    
+    
     def create
         newStudy = Study.new
         newStudy.studyName = params[:room_name]
         newStudy.stuNo = params[:num]
+        newStudy.curNo = 0
         newStudy.certi = params[:certi]
         newStudy.stuMaster = current_user.email
         newStudy.save
@@ -42,15 +48,35 @@ class UnsignedController < ApplicationController
         user = User.find_by(id: current_user.id)
         
         # 방 번호가 0이면 참가 안한상태. 0이 아니면 참가 한 상대.
+        
+        
         if user.studyID == 0
-            user.update(studyID: params[:id])
-            #새로운 방의 참가 리스트에도 보여준다.
+            targetRoomID = params[:id]
+            user.update(studyID: targetRoomID)
+            #참가할 방의 참가 리스트에도 보여준다.
             memberList = Stulist.new
             memberList.nickname = user.name
             memberList.studyID = user.studyID
             memberList.studentID = user.id
             memberList.save
+            # 참가할 방의 현 인원수도 1명을 늘려주고, 그로인해 그 방이 포화가 되었다면 isOpen을 false로 바꿔줌
+            room = Study.find_by(id: targetRoomID)
+            room.curNo = room.curNo+1
+            if room.stuNo == room.curNo
+                room.isOpen = false
+            end
+            room.save
+            
         else
+            #방 나갈땐, 유저가 있던 방의 사람수를 1명 빼준다. 개방 상태가 false면 공석이 생겼으므로 true로 바꿔줌 
+            
+            room = Study.find_by(id: user.studyID)
+            room.curNo = room.curNo-1
+            room.stuNo == room.curNo
+            room.isOpen = true
+            room.save
+            
+            #그런 뒤에 사용자 정보를 바꿔준다.
             user.update(studyID: 0)
             memberList=Stulist.find_by(studentID: current_user.id)
             memberList.destroy
